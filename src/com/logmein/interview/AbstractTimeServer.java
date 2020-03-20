@@ -14,13 +14,13 @@ public abstract class AbstractTimeServer implements DateService, DateTimeService
 	@Override
 	public String dateTimeRequest() {
 		ZonedDateTime zdt = ZonedDateTime.now();
-		return zdt.format( DateTimeFormatter.ISO_OFFSET_DATE );
+		return zdt.format( DateTimeFormatter.ISO_OFFSET_DATE_TIME );
 	}
 
 	@Override
 	public String dateRequest() {
 		ZonedDateTime zdt = ZonedDateTime.now();
-		return zdt.format( DateTimeFormatter.ISO_OFFSET_DATE_TIME );
+		return zdt.format( DateTimeFormatter.ISO_OFFSET_DATE );
 	}
 
 	public String requestHandler(String request) throws UnknownRequestException {
