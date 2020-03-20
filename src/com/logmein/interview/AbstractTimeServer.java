@@ -8,20 +8,20 @@ public abstract class AbstractTimeServer implements DateService, DateTimeService
 
 	@Override
 	public LocalTime timeRequest() {
-		// TODO Auto-generated method stub
-		return null;
+		LocalTime time = LocalTime.now();
+		return time;
 	}
 
 	@Override
 	public LocalDateTime dateTimeRequest() {
-		// TODO Auto-generated method stub
-		return null;
+		LocalDateTime dateTime = LocalDateTime.now();
+		return dateTime;
 	}
 
 	@Override
 	public LocalDate dateRequest() {
-		// TODO Auto-generated method stub
-		return null;
+		LocalDate date = LocalDate.now();
+		return date;
 	}
 	
 	
