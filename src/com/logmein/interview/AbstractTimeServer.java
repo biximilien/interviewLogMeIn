@@ -1,37 +1,36 @@
 package com.logmein.interview;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 public abstract class AbstractTimeServer implements DateService, DateTimeService, TimeService {
 
 	@Override
-	public LocalTime timeRequest() {
-		LocalTime time = LocalTime.now();
-		return time;
+	public String timeRequest() {
+		ZonedDateTime zdt = ZonedDateTime.now();
+		return zdt.format( DateTimeFormatter.ISO_OFFSET_TIME );
 	}
 
 	@Override
-	public LocalDateTime dateTimeRequest() {
-		LocalDateTime dateTime = LocalDateTime.now();
-		return dateTime;
+	public String dateTimeRequest() {
+		ZonedDateTime zdt = ZonedDateTime.now();
+		return zdt.format( DateTimeFormatter.ISO_OFFSET_DATE );
 	}
 
 	@Override
-	public LocalDate dateRequest() {
-		LocalDate date = LocalDate.now();
-		return date;
+	public String dateRequest() {
+		ZonedDateTime zdt = ZonedDateTime.now();
+		return zdt.format( DateTimeFormatter.ISO_OFFSET_DATE_TIME );
 	}
 
 	public String requestHandler(String request) throws UnknownRequestException {
 		switch (request) {
 		case "date":
-			return dateRequest().toString();
+			return dateRequest();
 		case "time":
-			return timeRequest().toString();
+			return timeRequest();
 		case "datetime":
-			return dateTimeRequest().toString();
+			return dateTimeRequest();
 		default:
 			throw new UnknownRequestException("don't know how to handle request `" + request + "`");
 		}
