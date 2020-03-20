@@ -21,6 +21,8 @@ public class UDPTimeServer extends AbstractTimeServer implements Runnable {
         running = true;
 
         while (running) {
+        	
+        	// receive a datagram
             DatagramPacket packet = new DatagramPacket(buf, buf.length);
             try {
 				socket.receive(packet);
@@ -33,23 +35,21 @@ public class UDPTimeServer extends AbstractTimeServer implements Runnable {
             int port = packet.getPort();
 
             // receive incoming packet
-//            packet = new DatagramPacket(buf, buf.length, address, port);
             String received = new String(packet.getData(), 0, packet.getLength());
             received = received.trim();
             System.out.println(received);
             
+            // prepare the response message
             String response = "";
-            
 			try {
 				response = requestHandler(received);
 			} catch (UnknownRequestException e) {
 				response = "unknown request";
 			}
 			
+			// craft the response datagram
 			response = response + "\n";
 			packet = new DatagramPacket(response.getBytes(), response.length(), address, port);
-//			packet.setData(response.getBytes());
-//			packet.setLength(response.getBytes().length);
             
             try {
 				socket.send(packet);
