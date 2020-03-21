@@ -6,8 +6,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class TCPTimeServer extends AbstractTimeServer implements Runnable {
+	
+	private static final Logger LOGGER = Logger.getLogger(TCPTimeServer.class.getName());
 
 	private ServerSocket socket;
 	private boolean running;
@@ -25,6 +29,7 @@ public class TCPTimeServer extends AbstractTimeServer implements Runnable {
 
 			try {
 				connectionSocket = socket.accept();
+				LOGGER.log(Level.INFO, "Time Server accepting TCP connections on address " + socket.getLocalSocketAddress() + " and port " + socket.getLocalPort());
 			} catch (IOException e) {
 				continue;
 			}
@@ -34,14 +39,14 @@ public class TCPTimeServer extends AbstractTimeServer implements Runnable {
 				try {
 					inFromClient = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
 				} catch (IOException e3) {
-					continue;
+					break;
 				}
 
 				DataOutputStream outToClient = null;
 				try {
 					outToClient = new DataOutputStream(connectionSocket.getOutputStream());
 				} catch (IOException e3) {
-					continue;
+					break;
 				}
 
 				String request = "";
@@ -53,7 +58,7 @@ public class TCPTimeServer extends AbstractTimeServer implements Runnable {
 				if (request != null) {
 					request.trim();
 				} else {
-					continue;
+					break;
 				}
 				System.out.println(request);
 
@@ -68,7 +73,7 @@ public class TCPTimeServer extends AbstractTimeServer implements Runnable {
 				try {
 					outToClient.writeBytes(response);
 				} catch (IOException e) {
-					continue;
+					break;
 				}
 			}
 		}

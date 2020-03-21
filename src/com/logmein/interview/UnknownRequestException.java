@@ -2,13 +2,30 @@ package com.logmein.interview;
 
 public class UnknownRequestException extends Exception {
 
-	public UnknownRequestException(String string) {
-		// TODO Auto-generated constructor stub
-	}
-
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -3913984055154310595L;
+
+	public UnknownRequestException() {
+		super();
+	}
+
+	public UnknownRequestException(String message) {
+		super(message);
+	}
+
+	public UnknownRequestException(String message, Throwable cause, boolean enableSuppression,
+			boolean writableStackTrace) {
+		super(message, cause, enableSuppression, writableStackTrace);
+	}
+
+	public UnknownRequestException(String message, Throwable cause) {
+		super(message, cause);
+	}
+
+	public UnknownRequestException(Throwable cause) {
+		super(cause);
+	}
 
 }

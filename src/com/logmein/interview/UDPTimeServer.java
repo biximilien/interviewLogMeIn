@@ -5,8 +5,12 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class UDPTimeServer extends AbstractTimeServer implements Runnable {
+	
+	private static final Logger LOGGER = Logger.getLogger(UDPTimeServer.class.getName());
 
 	private DatagramSocket socket;
 	private boolean running;
@@ -25,6 +29,7 @@ public class UDPTimeServer extends AbstractTimeServer implements Runnable {
         	// receive a datagram
             DatagramPacket packet = new DatagramPacket(buf, buf.length);
             try {
+            	LOGGER.log(Level.INFO, "TimeServer is listening for datagrams on UDP socket address " + socket.getLocalAddress() + " and port " + socket.getLocalPort());
 				socket.receive(packet);
 			} catch (IOException e) {
 				e.printStackTrace();
