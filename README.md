@@ -1,7 +1,7 @@
 # LogMeIn Interview Assignment
 
 This is the exercise I was assigned for my interview at LogMeIn.
-The original assignment document is `assignment.pdf` and is included in the repo.
+The original assignment document is `assignment.pdf` and is included in the repository.
 
 ## Documentation
 
@@ -12,13 +12,15 @@ A few resources I have colligated while attempting this exercise. I have consult
 * User Datagram Protocol [Wikipedia Article](https://en.wikipedia.org/wiki/User_Datagram_Protocol).
 * Java API 8 [ZonedDateTime](https://docs.oracle.com/javase/8/docs/api/java/time/ZonedDateTime.html)
 * Java API 8 [DateTimeFormatter](https://docs.oracle.com/javase/8/docs/api/java/time/ZonedDateTime.html)
+* Java API 8 [Socket](https://docs.oracle.com/javase/8/docs/api/java/net/Socket.html)
 * Java API 8 [ServerSocket](https://docs.oracle.com/javase/8/docs/api/java/net/ServerSocket.html)
 * Relevant discussion on StackOverflow about sockets [StackOverflow Question](https://stackoverflow.com/questions/10240694/java-socket-api-how-to-tell-if-a-connection-has-been-closed/10241044#10241044)
+* Java Logging Frameworks [Wikipedia Article](https://en.wikipedia.org/wiki/Java_logging_framework)
 * [Java Logging Example](https://examples.javacodegeeks.com/core-java/util/logging/java-util-logging-example/)
 
 ## Automated Testing
 
-I have not used automated testing in my solution, as it is rather simple. I felt unit tests would have been testing against core java API features, and as such did not feel too relevant. Furthermore, an integration test framework did not feel warranted for 3 use cases.
+I have not used automated testing in my solution, as it is rather simple. I felt unit tests would have only been testing against core java API features, and as such did not feel too relevant. Furthermore, an integration test framework did not feel warranted for 3 use cases.
 
 ## Manual Testing
 
@@ -49,3 +51,8 @@ $ nc -u 127.0.0.1 5051
 date
 2020-03-20-04:00
 ```
+
+## Possible improvements
+
+* Defining a message protocol and replacing request strings by single byte.
+* Adding some form of integrity check to datagrams, such as a checksum or CRC.
