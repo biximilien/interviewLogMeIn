@@ -71,5 +71,11 @@ public class TCPTimeServerThread extends Thread {
 				break;
 			}
 		}
+		
+		try {
+			socket.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
