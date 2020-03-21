@@ -49,7 +49,9 @@ public class UDPTimeServer extends AbstractTimeServer implements Runnable {
 			try {
 				response = requestHandler(received);
 			} catch (UnknownRequestException e) {
+				// we don't care if request is not understood, just reply with `unknown request`
 				response = "unknown request";
+				LOGGER.log(Level.WARNING, e.getMessage(), e);
 			}
 			LOGGER.log(Level.INFO, "Sending datagram response `" + response + "`");
 			
