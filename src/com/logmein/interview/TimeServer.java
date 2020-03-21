@@ -1,13 +1,25 @@
+/**
+ * @author Maxime 'biximilien' Gauthier 
+ */
 package com.logmein.interview;
 
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * The Class TimeServer.
+ */
 public class TimeServer {
 	
+	/** The Constant LOGGER. */
 	private static final Logger LOGGER = Logger.getLogger(TimeServer.class.getName());
 
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String[] args) {
 		
 		LOGGER.log(Level.INFO, "TimeServer is starting...");

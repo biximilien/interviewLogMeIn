@@ -1,4 +1,4 @@
-/*
+/**
  * @author Maxime 'biximilien' Gauthier 
  */
 package com.logmein.interview;

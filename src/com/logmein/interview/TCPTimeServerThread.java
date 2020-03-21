@@ -1,3 +1,6 @@
+/**
+ * @author Maxime 'biximilien' Gauthier 
+ */
 package com.logmein.interview;
 
 import java.io.BufferedReader;
@@ -9,13 +12,26 @@ import java.net.SocketTimeoutException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * The Class TCPTimeServerThread.
+ */
 public class TCPTimeServerThread extends Thread {
 
+	/** The Constant LOGGER. */
 	private static final Logger LOGGER = Logger.getLogger(TCPTimeServerThread.class.getName());
 
+	/** The socket. */
 	private Socket socket;
+
+	/** The server. */
 	private TCPTimeServer server;
 
+	/**
+	 * Instantiates a new TCP time server thread.
+	 *
+	 * @param socket the socket
+	 * @param server the server
+	 */
 	public TCPTimeServerThread(Socket socket, TCPTimeServer server) {
 		this.socket = socket;
 		this.server = server;

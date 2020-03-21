@@ -1,4 +1,4 @@
-/*
+/**
  * @author Maxime 'biximilien' Gauthier 
  */
 package com.logmein.interview;
@@ -38,7 +38,7 @@ public abstract class AbstractTimeServer implements DateService, DateTimeService
 	 * response will be an appropriate ISO 8601 compliant formatted string.
 	 *
 	 * @param request either of `date`, `time` or `datetime`
-	 * @return an ISO 8601 compliant date or time formatted string 
+	 * @return an ISO 8601 compliant date or time formatted string
 	 * @throws UnknownRequestException thrown when any other request occur
 	 */
 	public String requestHandler(String request) throws UnknownRequestException {

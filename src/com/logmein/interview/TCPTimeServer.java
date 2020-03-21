@@ -1,3 +1,6 @@
+/**
+ * @author Maxime 'biximilien' Gauthier 
+ */
 package com.logmein.interview;
 
 import java.io.IOException;
@@ -6,13 +9,26 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * The Class TCPTimeServer.
+ */
 public class TCPTimeServer extends AbstractTimeServer implements Runnable {
 
+	/** The Constant LOGGER. */
 	private static final Logger LOGGER = Logger.getLogger(TCPTimeServer.class.getName());
 
+	/** The socket. */
 	private ServerSocket socket;
+	
+	/** The running. */
 	private boolean running;
 
+	/**
+	 * Instantiates a new TCP time server.
+	 *
+	 * @param port the port the TCP Time Server should bind on
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public TCPTimeServer(int port) throws IOException {
 		this.socket = new ServerSocket(port);
 	}
@@ -46,6 +62,9 @@ public class TCPTimeServer extends AbstractTimeServer implements Runnable {
 		}
 	}
 
+	/**
+	 * Stop the TCP server.
+	 */
 	public void stop() {
 		running = false;
 	}

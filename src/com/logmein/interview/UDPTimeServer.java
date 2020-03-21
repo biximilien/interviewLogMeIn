@@ -1,3 +1,6 @@
+/**
+ * @author Maxime 'biximilien' Gauthier 
+ */
 package com.logmein.interview;
 
 import java.io.IOException;
@@ -8,14 +11,29 @@ import java.net.SocketException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * The Class UDPTimeServer.
+ */
 public class UDPTimeServer extends AbstractTimeServer implements Runnable {
 	
+	/** The Constant LOGGER. */
 	private static final Logger LOGGER = Logger.getLogger(UDPTimeServer.class.getName());
 
+	/** The socket. */
 	private DatagramSocket socket;
+	
+	/** The running. */
 	private boolean running;
+	
+	/** The buf. */
 	private byte[] buf = new byte[256];
 	
+	/**
+	 * Instantiates a new UDP time server.
+	 *
+	 * @param port the port
+	 * @throws SocketException the socket exception
+	 */
 	public UDPTimeServer(int port) throws SocketException {
 		this.socket = new DatagramSocket(port);
 	}
@@ -71,6 +89,9 @@ public class UDPTimeServer extends AbstractTimeServer implements Runnable {
         LOGGER.log(Level.INFO, "Done.");
     }
 	
+	/**
+	 * Stop.
+	 */
 	public void stop() {
 		running = false;
 	}
