@@ -26,6 +26,8 @@ public class TCPTimeServer extends AbstractTimeServer implements Runnable {
 
 			try {
 				connectionSocket = socket.accept();
+				connectionSocket.setKeepAlive(false);
+				connectionSocket.setSoTimeout(5000);
 				LOGGER.log(Level.INFO, "Time Server accepted a connection on address " + socket.getInetAddress()
 						+ " and port " + socket.getLocalPort());
 			} catch (IOException e) {
@@ -40,7 +42,7 @@ public class TCPTimeServer extends AbstractTimeServer implements Runnable {
 		try {
 			socket.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, e.getMessage(), e);
 		}
 	}
 

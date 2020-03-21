@@ -5,6 +5,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -23,6 +24,7 @@ public class TCPTimeServerThread extends Thread {
 	@Override
 	public void run() {
 		while (socket.isConnected() && !socket.isClosed()) {
+
 			// setup input stream
 			BufferedReader inFromClient = null;
 			try {
@@ -45,6 +47,9 @@ public class TCPTimeServerThread extends Thread {
 			String request = "";
 			try {
 				request = inFromClient.readLine();
+			} catch (SocketTimeoutException e) {
+				LOGGER.log(Level.INFO, "closing socket due to inactivity");
+				break;
 			} catch (IOException e) {
 				LOGGER.log(Level.WARNING, e.getMessage(), e);
 				break;
@@ -74,8 +79,9 @@ public class TCPTimeServerThread extends Thread {
 				break;
 			}
 		}
-		
+
 		try {
+			LOGGER.log(Level.INFO, "closing threaded tcp socket...");
 			socket.close();
 		} catch (IOException e) {
 			e.printStackTrace();
