@@ -5,7 +5,7 @@ The original assignment document is `assignment.pdf` and is included in the repo
 
 ## Documentation
 
-A few resources I have colligated while attempting this exercise. I have consulted other sources, examples and discussions that are not included as I forgot to bookmark them.
+A few resources I have colligated while attempting this exercise. I have consulted other sources, examples and discussions that are not included as I neglected to bookmark them.
 
 * The international standard ISO 8601 date and time interchange format [Wikipedia Article](https://en.wikipedia.org/wiki/ISO_8601).
 * Transmission Control Protocol [Wikipedia Article](https://en.wikipedia.org/wiki/Transmission_Control_Protocol).
