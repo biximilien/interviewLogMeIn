@@ -24,12 +24,12 @@ public class UDPTimeServer extends AbstractTimeServer implements Runnable {
 	public void run() {
         running = true;
 
+        LOGGER.log(Level.INFO, "TimeServer is listening for datagrams on UDP socket address " + socket.getLocalAddress() + " and port " + socket.getLocalPort());
         while (running) {
         	
         	// receive a datagram
             DatagramPacket packet = new DatagramPacket(buf, buf.length);
             try {
-            	LOGGER.log(Level.INFO, "TimeServer is listening for datagrams on UDP socket address " + socket.getLocalAddress() + " and port " + socket.getLocalPort());
 				socket.receive(packet);
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -42,7 +42,7 @@ public class UDPTimeServer extends AbstractTimeServer implements Runnable {
             // receive incoming packet
             String received = new String(packet.getData(), 0, packet.getLength());
             received = received.trim();
-            System.out.println(received);
+            LOGGER.log(Level.INFO, "Received datagram request `" + received + "`");
             
             // prepare the response message
             String response = "";
@@ -51,6 +51,7 @@ public class UDPTimeServer extends AbstractTimeServer implements Runnable {
 			} catch (UnknownRequestException e) {
 				response = "unknown request";
 			}
+			LOGGER.log(Level.INFO, "Sending datagram response `" + response + "`");
 			
 			// craft the response datagram
 			response = response + "\n";
@@ -62,7 +63,10 @@ public class UDPTimeServer extends AbstractTimeServer implements Runnable {
 				e.printStackTrace();
 			}
         }
+        
+        LOGGER.log(Level.INFO, "Closing UDP socket...");
         socket.close();
+        LOGGER.log(Level.INFO, "Done.");
     }
 	
 	public void stop() {

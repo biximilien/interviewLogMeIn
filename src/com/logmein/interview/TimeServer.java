@@ -34,8 +34,6 @@ public class TimeServer {
 			LOGGER.log(Level.INFO, "TimeServer is ready and waiting.");
 		} catch (IOException e) {
 			LOGGER.log(Level.SEVERE, e.getMessage(), e);
-		} finally {
-			udpTimeServer.stop();
 		}
 		
 	}

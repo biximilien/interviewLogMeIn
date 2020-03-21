@@ -29,7 +29,7 @@ public class TCPTimeServer extends AbstractTimeServer implements Runnable {
 
 			try {
 				connectionSocket = socket.accept();
-				LOGGER.log(Level.INFO, "Time Server accepting TCP connections on address " + socket.getLocalSocketAddress() + " and port " + socket.getLocalPort());
+				LOGGER.log(Level.INFO, "Time Server accepted a connection on address " + socket.getInetAddress() + " and port " + socket.getLocalPort());
 			} catch (IOException e) {
 				continue;
 			}
@@ -60,7 +60,7 @@ public class TCPTimeServer extends AbstractTimeServer implements Runnable {
 				} else {
 					break;
 				}
-				System.out.println(request);
+				LOGGER.log(Level.INFO, "Received TCP request `" + request + "`");
 
 				String response;
 				try {
@@ -68,6 +68,8 @@ public class TCPTimeServer extends AbstractTimeServer implements Runnable {
 				} catch (UnknownRequestException e1) {
 					response = "unknown request";
 				}
+				LOGGER.log(Level.INFO, "Sending TCP response `" + response + "`");
+				
 				response = response + "\n";
 
 				try {
