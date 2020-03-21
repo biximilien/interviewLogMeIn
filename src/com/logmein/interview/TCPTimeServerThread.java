@@ -27,7 +27,8 @@ public class TCPTimeServerThread extends Thread {
 			BufferedReader inFromClient = null;
 			try {
 				inFromClient = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			} catch (IOException e3) {
+			} catch (IOException e) {
+				LOGGER.log(Level.WARNING, e.getMessage(), e);
 				break;
 			}
 
@@ -35,7 +36,8 @@ public class TCPTimeServerThread extends Thread {
 			DataOutputStream outToClient = null;
 			try {
 				outToClient = new DataOutputStream(socket.getOutputStream());
-			} catch (IOException e3) {
+			} catch (IOException e) {
+				LOGGER.log(Level.WARNING, e.getMessage(), e);
 				break;
 			}
 
@@ -43,8 +45,9 @@ public class TCPTimeServerThread extends Thread {
 			String request = "";
 			try {
 				request = inFromClient.readLine();
-			} catch (IOException e2) {
-				e2.printStackTrace();
+			} catch (IOException e) {
+				LOGGER.log(Level.WARNING, e.getMessage(), e);
+				break;
 			}
 			if (request != null) {
 				request.trim();
@@ -57,11 +60,11 @@ public class TCPTimeServerThread extends Thread {
 			String response;
 			try {
 				response = server.requestHandler(request);
-			} catch (UnknownRequestException e1) {
+			} catch (UnknownRequestException e) {
+				// we don't care if request is not understood, just reply with `unknown request`
 				response = "unknown request";
 			}
 			LOGGER.log(Level.INFO, "Sending TCP response `" + response + "`");
-
 			response = response + "\n";
 
 			// send response to client
